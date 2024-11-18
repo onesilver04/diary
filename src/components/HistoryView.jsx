@@ -1,6 +1,8 @@
 import "./HistoryView.css";
 
 function HistoryView(props) {
+  const answers = JSON.parse(localStorage.getItem("diary") || "{}");
+
   return (
     <>
       <div style={{ display: "flex", alignItems: "center" }}>
@@ -15,10 +17,12 @@ function HistoryView(props) {
         </button>
         <h4>다이어리 기록</h4>
       </div>
-      <div className="diary-item">
-        <div className="diary-date">(날짜)</div>
-        <div>(내용)</div>
-      </div>
+      {Object.entries(answers).map(([date, content]) => (
+        <div key={date} className="diary-item">
+          <div className="diary-date">{date}일</div>
+          <div>{content}</div>
+        </div>
+      ))}
     </>
   );
 }
