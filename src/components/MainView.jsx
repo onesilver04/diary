@@ -8,7 +8,9 @@ function MainView(props) {
   const month = today.getMonth() + 1;
   const day = today.getDate();
 
-  const [input, setInput] = useState("");
+  const answers = JSON.parse(localStorage.getItem("diary") || "{}");
+  // localStorage에서 데이터를 가져와 파싱 후 object로 리턴
+  const [input, setInput] = useState(answers[day]);
 
   // 질문 가져오기
   const [questions, setQuestions] = useState();
@@ -52,7 +54,14 @@ function MainView(props) {
           // 입력값을 렌더링
           value={input}
           onChange={(e) => {
-            setInput(e.target.value);
+            const value = e.target.value;
+            setInput(value);
+            // 새로고침 해도 값이 남아 있게
+            // 다른 날짜의 대답도 저장
+            localStorage.setItem(
+              "diary",
+              JSON.stringify({ ...answers, [day]: value })
+            );
           }}
         />
       </div>

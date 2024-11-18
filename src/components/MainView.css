@@ -3,9 +3,12 @@
   justify-content: space-between;
   align-items: center;
   margin-bottom: 20px;
+  font-weight: bold;
+  color: rgb(175, 114, 233);
 }
 
 .history-btn {
+  background-color: rgb(193, 164, 230);
   border: 1px solid #dddddd;
   border-radius: 10px;
   padding: 5px 10px;
@@ -15,6 +18,7 @@
 .question {
   margin-bottom: 10px;
   font-weight: bold;
+  color: rgb(165, 89, 232);
 }
 
 .content textarea {
