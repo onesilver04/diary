@@ -1,13 +1,37 @@
 import "./MainView.css";
+import { useEffect, useState } from "react";
 
 function MainView(props) {
   // mainview의 오늘날짜 가져오기
   const today = new Date();
-  const formattedDate = today.toLocaleDateString();
+  const year = today.getFullYear();
+  const month = today.getMonth();
+  const day = today.getDate();
+
+  // 질문 가져오기
+  const [questions, setQuestions] = useState();
+  useEffect(() => {
+    fetch(
+      "https://raw.githubusercontent.com/hackurity01/simple-diary/main/src/questions.json"
+    )
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        // 객체로 질문 받기
+        setQuestions(data);
+      });
+  }, []);
+
+  if (!questions) {
+    return null;
+  }
+
   return (
     <>
       <div className="header">
-        <div>{formattedDate}</div>
+        <div>
+          {year}년 {month}월 {day}일
+        </div>
         <div>
           <button
             className="history-btn"
@@ -20,7 +44,7 @@ function MainView(props) {
           </button>
         </div>
       </div>
-      <div className="question">(질문)</div>
+      <div className="question">{questions[day]}</div>
       <div className="content">
         <textarea
           onChange={() => {
