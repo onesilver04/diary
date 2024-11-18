@@ -1,14 +1,18 @@
 import "./MainView.css";
 
 function MainView(props) {
+  // mainview의 오늘날짜 가져오기
+  const today = new Date();
+  const formattedDate = today.toLocaleDateString();
   return (
     <>
       <div className="header">
-        <div>(오늘 날짜)</div>
+        <div>{formattedDate}</div>
         <div>
           <button
             className="history-btn"
             onClick={() => {
+              // history 화면으로 전환
               props.setView("history");
             }}
           >
