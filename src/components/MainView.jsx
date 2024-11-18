@@ -1,6 +1,6 @@
 import "./MainView.css";
 
-function MainView() {
+function MainView(props) {
   return (
     <>
       <div className="header">
@@ -9,8 +9,9 @@ function MainView() {
           <button
             className="history-btn"
             onClick={() => {
-              // HistoryView 화면으로 전환
-            }}>
+              props.setView("history");
+            }}
+          >
             기록 보기
           </button>
         </div>
