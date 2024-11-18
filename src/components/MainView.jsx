@@ -5,8 +5,10 @@ function MainView(props) {
   // mainview의 오늘날짜 가져오기
   const today = new Date();
   const year = today.getFullYear();
-  const month = today.getMonth();
+  const month = today.getMonth() + 1;
   const day = today.getDate();
+
+  const [input, setInput] = useState("");
 
   // 질문 가져오기
   const [questions, setQuestions] = useState();
@@ -47,8 +49,10 @@ function MainView(props) {
       <div className="question">{questions[day]}</div>
       <div className="content">
         <textarea
-          onChange={() => {
-            console.log("onChange");
+          // 입력값을 렌더링
+          value={input}
+          onChange={(e) => {
+            setInput(e.target.value);
           }}
         />
       </div>
